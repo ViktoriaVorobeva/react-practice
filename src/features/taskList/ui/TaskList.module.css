@@ -1,0 +1,12 @@
+.tasks {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.no_tasks {
+    color: #e74c3c;
+    align-self: center;
+}
