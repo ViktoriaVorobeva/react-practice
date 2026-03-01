@@ -1,11 +1,9 @@
-import TaskPage from '@pages/TaskPage'
 import './App.css'
+import { Router } from './router'
 
 function App() {
   return (
-    <>
-      <TaskPage />
-    </>
+    <Router />
   )
 }
 

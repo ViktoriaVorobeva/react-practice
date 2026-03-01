@@ -1,4 +1,4 @@
-import { TaskList, useTasks } from '@features/taskList';
+import { TaskList, useTasks, type TFilter } from '@features/taskList';
 import { FilterButton } from '@shared/ui';
 import { FILTER_OPTIONS } from '../const';
 
@@ -9,7 +9,7 @@ export function TaskWidget() {
         <div>
             <h2>Мои задачи:</h2>
 
-            <FilterButton options={FILTER_OPTIONS} defaultValue={FILTER_OPTIONS[0].value} value={filter} onSelect={setFilter} />
+            <FilterButton options={FILTER_OPTIONS} value={filter} onSelect={(value) => setFilter(value as TFilter)} />
             
             <TaskList tasks={tasks} action={removeTask} />
         </div>
