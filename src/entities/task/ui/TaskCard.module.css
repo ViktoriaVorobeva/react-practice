@@ -1,0 +1,19 @@
+.card {
+    border: 10px solid #bf4342;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.done {
+    border-color: transparent;
+    background: #84a98c;
+}
+
+.done__text {
+    text-decoration: line-through;
+}
