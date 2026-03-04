@@ -1,6 +1,7 @@
 import { TaskCard, type ITask } from '@entities/task';
 
 import styles from "./TaskList.module.css";
+import { Button } from '@shared/ui';
 
 interface IProps {
     tasks: ITask[];
@@ -13,7 +14,12 @@ export function TaskList({ tasks, action }: IProps) {
     return (
       <div className={styles.tasks}>
         {isCards && tasks.map(task => (
-          <TaskCard key={task.id} task={task} action={action} />
+          <div className={styles.task__container} key={task.id}>
+            <TaskCard task={task} />
+            <Button onClick={() => action(task.id)} color='delete'>
+              Удалить
+            </Button>
+          </div>
         ))}
 
         {!isCards && <p className={styles.no_tasks}>На сегодня задач больше нет.</p>}
