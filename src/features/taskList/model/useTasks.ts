@@ -1,11 +1,13 @@
-import { useCallback, useMemo, useState } from 'react';
-import type { ITask } from 'entities/task';
-import { INITIAL_TASKS } from '../const';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import type { ITask } from '@entities/task';
+import { useGetTasksQuery } from '@entities/task';
 
 export type TFilter = 'all' | 'completed' | 'incomplete';
 
-export function useTasks(initial: ITask[] = INITIAL_TASKS) {    
-    const [tasks, setTasks] = useState<ITask[]>(initial);
+export function useTasks() {
+    const { data: remoteTasks = [] } = useGetTasksQuery();
+
+    const [tasks, setTasks] = useState<ITask[]>(remoteTasks);
     const [filter, setFilter] = useState<TFilter>('all');
 
     const removeTask = useCallback((id: string): void => {
@@ -21,6 +23,12 @@ export function useTasks(initial: ITask[] = INITIAL_TASKS) {
         }
         return true;
     }), [tasks, filter]);
+
+    useEffect(() => { 
+        if (remoteTasks.length > 0 && tasks.length === 0) { 
+            setTasks(remoteTasks); 
+        } 
+    }, [remoteTasks.length]);
 
     return {
         tasks: filteredTasks,

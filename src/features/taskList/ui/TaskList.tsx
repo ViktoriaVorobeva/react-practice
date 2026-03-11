@@ -1,7 +1,7 @@
-import { TaskCard, type ITask } from '@entities/task';
+import { TaskCard, useGetTasksQuery, type ITask } from '@entities/task';
+import { Button } from '@shared/ui';
 
 import styles from "./TaskList.module.css";
-import { Button } from '@shared/ui';
 
 interface IProps {
     tasks: ITask[];
@@ -9,10 +9,14 @@ interface IProps {
 };
 
 export function TaskList({ tasks, action }: IProps) {
+    const { isLoading, error } = useGetTasksQuery();
+
     const isCards = tasks.length !== 0;
 
     return (
       <div className={styles.tasks}>
+        {isLoading && <p className={styles.tasks__loading}>Загрузка задач...</p>}
+
         {isCards && tasks.map(task => (
           <div className={styles.task__container} key={task.id}>
             <TaskCard task={task} />
@@ -22,7 +26,9 @@ export function TaskList({ tasks, action }: IProps) {
           </div>
         ))}
 
-        {!isCards && <p className={styles.no_tasks}>На сегодня задач больше нет.</p>}
+        {!!error && <p className={styles.no_tasks}>При загрузке задач произошла ошибка.</p>}
+
+        {!isLoading && !error && !isCards && <p className={styles.no_tasks}>На сегодня задач больше нет.</p>}
       </div>
     );
 }

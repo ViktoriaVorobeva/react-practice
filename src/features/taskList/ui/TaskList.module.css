@@ -16,3 +16,8 @@
     color: #e74c3c;
     align-self: center;
 }
+
+.tasks__loading {
+    color: #f67a0e;
+    align-self: center;
+}
