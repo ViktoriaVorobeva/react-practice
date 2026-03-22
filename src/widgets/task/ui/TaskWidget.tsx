@@ -3,7 +3,7 @@ import { FilterButton } from '@shared/ui';
 import { FILTER_OPTIONS } from '../const';
 
 export function TaskWidget() {
-    const { tasks, filter, removeTask, setFilter } = useTasks();
+    const { tasks, filter, removeTask, setFilter, isLoading, isError } = useTasks();
 
     return (
         <div>
@@ -11,7 +11,7 @@ export function TaskWidget() {
 
             <FilterButton options={FILTER_OPTIONS} value={filter} onSelect={(value) => setFilter(value as TFilter)} />
             
-            <TaskList tasks={tasks} action={removeTask} />
+            <TaskList tasks={tasks} action={removeTask} isLoading={isLoading} isError={isError} />
         </div>
     )
 }

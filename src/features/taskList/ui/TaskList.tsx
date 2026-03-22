@@ -1,4 +1,4 @@
-import { TaskCard, useGetTasksQuery, type ITask } from '@entities/task';
+import { TaskCard, type ITask } from '@entities/task';
 import { Button } from '@shared/ui';
 
 import styles from "./TaskList.module.css";
@@ -6,11 +6,11 @@ import styles from "./TaskList.module.css";
 interface IProps {
     tasks: ITask[];
     action: (id: string) => void;
+    isLoading: boolean;
+    isError: boolean;
 };
 
-export function TaskList({ tasks, action }: IProps) {
-    const { isLoading, error } = useGetTasksQuery();
-
+export function TaskList({ tasks, action, isLoading, isError }: IProps) {
     const isCards = tasks.length !== 0;
 
     return (
@@ -26,9 +26,9 @@ export function TaskList({ tasks, action }: IProps) {
           </div>
         ))}
 
-        {!!error && <p className={styles.no_tasks}>При загрузке задач произошла ошибка.</p>}
+        {isError && <p className={styles.no_tasks}>При загрузке задач произошла ошибка.</p>}
 
-        {!isLoading && !error && !isCards && <p className={styles.no_tasks}>На сегодня задач больше нет.</p>}
+        {!isLoading && !isError && !isCards && <p className={styles.no_tasks}>На сегодня задач больше нет.</p>}
       </div>
     );
 }

@@ -5,7 +5,7 @@ import { useGetTasksQuery } from '@entities/task';
 export type TFilter = 'all' | 'completed' | 'incomplete';
 
 export function useTasks() {
-    const { data: remoteTasks = [] } = useGetTasksQuery();
+    const { data: remoteTasks = [], isLoading, error } = useGetTasksQuery();
 
     const [tasks, setTasks] = useState<ITask[]>(remoteTasks);
     const [filter, setFilter] = useState<TFilter>('all');
@@ -33,7 +33,9 @@ export function useTasks() {
     return {
         tasks: filteredTasks,
         filter,
+        isLoading, 
+        isError: !!error,
         setFilter,
-        removeTask
+        removeTask,
     }
 }
