@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.link {
+    color: blue;
+}
+
+.active {
+    color: green;
+    text-decoration: none;
+}
