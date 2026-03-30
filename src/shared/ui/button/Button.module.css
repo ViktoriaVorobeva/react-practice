@@ -13,3 +13,8 @@
 .delete {
     background-color: #e74c3c;
 }
+
+.disabled {
+    background-color: rgb(173, 173, 173);
+    color: black;
+}
