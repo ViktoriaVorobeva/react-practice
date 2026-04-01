@@ -29,7 +29,7 @@ export const RegistrationForm = () => {
 
     return <Formik initialValues={initialFormValues} validationSchema={validationSchema} onSubmit={submitHandler}>
         {({ values, errors, isValid, dirty }) => (
-            <Form action="/submit" method="post" className={styles.form}>
+            <Form className={styles.form}>
                 <div className={styles.formGroup}>
                     <label htmlFor="userName">Имя пользователя:</label>
                     <Field type="text" id="userName" name="userName" value={values.userName} />
